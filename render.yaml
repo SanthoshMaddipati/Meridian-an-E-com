@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: meridian-commerce
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: AUTH_SECRET
+        sync: false
+      - key: SALESFORCE_CLIENT_ID
+        sync: false
+      - key: SALESFORCE_CLIENT_SECRET
+        sync: false
+      - key: SALESFORCE_LOGIN_URL
+        value: https://orgfarm-2c5273232c-dev-ed.develop.my.salesforce.com
+      - key: SALESFORCE_API_VERSION
+        value: v61.0
+      - key: SALESFORCE_ORDER_OBJECT
+        value: Commerce_Order__c
